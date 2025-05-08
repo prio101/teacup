@@ -13,7 +13,7 @@ class StickerPackOffer < Offer
     unless items.empty?
       if @applied == false && current_total >= STICKER_OFFER_MINIMUM
         LoggerHelper.log(:info, "Sticker pack offer applied")
-        @applied = true
+        @applied = true # Settings Attribute that can be used later if needed
       end
     end
     current_total

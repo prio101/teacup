@@ -12,12 +12,15 @@ require_relative './lib/utils/round_up'
 
 logger = LoggerHelper
 logger.log(:info,"Starting the cart basket application")
+
 # Setup product catalog
 products = [
   Product.new(code: "R01", name: "Red Widget", price: 32.95),
   Product.new(code: "G01", name: "Green Widget", price: 24.95),
   Product.new(code: "B01", name: "Blue Widget", price: 7.95)
 ]
+
+# Initialize product catalogue
 catalogue = ProductCatalogue.new(products)
 
 # Setup delivery rules
@@ -29,13 +32,43 @@ offers = [
 ]
 
 # Initialize basket
-basket = Basket.new(catalogue: catalogue, delivery_rule: delivery_rule, offers: offers)
+basket = Basket.new(catalogue: catalogue,
+                    delivery_rule: delivery_rule,
+                    offers: offers)
 
-# Add products
-basket.add("R01")
-# basket.add("R01")
-basket.add("G01")
+# add the terminal inputs, from user
+LoggerHelper.log(:info,"Please enter the product code to add to the basket (or 'done/d' to finish):")
+LoggerHelper.log(:info,"You can add multiple products, just enter the product code and press enter.")
+LoggerHelper.log(:info,"Choose from the following product codes: R01, G01, B01 [Case Insensitive]")
 
+loop do
+  logger.log(:info,"Enter Input [R01, G01, B01] or [d/Done] to Finish:")
+  input = gets.chomp
+  break if input.downcase == 'done' || input.downcase == 'd' 
 
-# Print total
-puts "Total: $#{basket.total}"
+  # read from the comma separated list
+  # R01, G01, B01, R01, G01
+  input = input.split(",").map(&:strip)
+  input.each do |code|
+    begin
+      case code.downcase
+      when 'r01'
+        LoggerHelper.log(:info, "Adding Red Widget to the basket.")
+        basket.add(code.upcase)
+      when 'g01'
+        LoggerHelper.log(:info, "Adding Green Widget to the basket.")
+        basket.add(code.upcase)
+      when 'b01'
+        basket.add(code.upcase)
+        LoggerHelper.log(:info, "Adding Blue Widget to the basket.")
+      else
+        raise "Invalid product code: #{code}"
+      end
+    rescue => e
+      LoggerHelper.log(:error, e.message)
+    end
+  end
+
+  # Display the current total
+  LoggerHelper.log(:info, "Total: $#{basket.total}")
+end
