@@ -11,7 +11,8 @@ class Basket
 
   def add(product_code)
     product = @catalogue.find(product_code)
-    raise "Invalid product code: #{product_code}" unless product
+
+    raise InvalidProductCode unless product
 
     @items << product
   end
