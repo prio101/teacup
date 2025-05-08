@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+require 'colorize'
 require_relative './lib/products/product'
 require_relative './lib/products/product_catalogue'
 require_relative './lib/delivery_rules/delivery_rule'
@@ -44,7 +44,7 @@ LoggerHelper.log(:info,"Choose from the following product codes: R01, G01, B01 [
 loop do
   logger.log(:info,"Enter Input [R01, G01, B01] or [d/Done] to Finish:")
   input = gets.chomp
-  break if input.downcase == 'done' || input.downcase == 'd' 
+  break if input.downcase == 'done' || input.downcase == 'd'
 
   # read from the comma separated list
   # R01, G01, B01, R01, G01

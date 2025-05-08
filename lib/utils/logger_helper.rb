@@ -22,17 +22,17 @@ module LoggerHelper
   def self.output(level, message)
     case level
     when :debug
-      logger.debug(message)
+      logger.debug(message.colorize(:blue).on_yellow)
     when :info
-      logger.info(message)
+      logger.info(message.colorize(color: :blue).on_gray.bold)
     when :warn
-      logger.warn(message)
+      logger.warn(message.colorize(:green).on_gray)
     when :error
-      logger.error(message)
+      logger.error(message.colorize(:white).on_red.bold)
     when :fatal
-      logger.fatal(message)
+      logger.fatal(message.colorize(:white).on_red.bold)
     else
-      logger.unknown(message)
+      logger.unknown(message.colorize(:white).on_green)
     end
   end
 end
