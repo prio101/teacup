@@ -14,7 +14,12 @@ puts artii.asciify('Basket Application').colorize(:blue).bold
 
 
 logger = LoggerHelper
-logger.log(:info,"Starting the cart basket application")
+logger.log(:unknown, "made by: Mahabub Islam \n github: @prio101 \n
+                      https://mahabub.dev")
+
+
+logger.log(:info, "Starting the cart basket application \n Type 'help' for available commands")
+
 
 # Setup product catalog
 products = [
@@ -30,8 +35,8 @@ catalogue = ProductCatalogue.new(products)
 delivery_rule = DeliveryRule.new
 
 # Setup offers
+# StickerPackOffer.new(product_code: "G01"),
 offers = [
-  StickerPackOffer.new(product_code: "G01"),
   HalfOffer.new(product_code: "R01", quantity: 2),
 ]
 
@@ -65,6 +70,15 @@ begin
         when 'b01'
           basket.add(code.upcase)
           LoggerHelper.log(:info, "Adding Blue Widget to the basket.")
+        when 'help'
+          LoggerHelper.log(:info, "Available product codes: R01, G01, B01")
+          LoggerHelper.log(:info, "Enter 'done' or 'd' to finish.")
+          LoggerHelper.log(:info, "Enter 'offers' to show the basket offers.")
+        when 'offers'
+          LoggerHelper.log(:info, "Current offers in the basket:")
+          offers.each do |offer|
+            offer.description
+          end
         else
           raise "Invalid product code: #{code}"
         end
@@ -77,4 +91,4 @@ rescue Interrupt
   LoggerHelper.log(:info, "Program interrupted. Exiting gracefully...")
 end
 
-LoggerHelper.log(:info, "Total: $#{basket.total}")
+LoggerHelper.log(:warn, "Total: $#{basket.total}")

@@ -7,6 +7,10 @@ class StickerPackOffer < Offer
     @applied = false
   end
 
+  def description
+    LoggerHelper.log(:warn, "Get a sticker pack when you spend at least #{STICKER_OFFER_MINIMUM}.")
+  end
+
   def apply(items, current_total)
     # if the total of the items is greater than STICKER_OFFER_MINIMUM ,
     # we will attach a sticker pack
