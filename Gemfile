@@ -10,3 +10,5 @@ gem "colorize", "~> 1.1"
 gem "artii", "~> 2.1"
 
 gem "rspec", "~> 3.13"
+
+gem "rake", "~> 13.2"

@@ -21,6 +21,11 @@ The cart system will have the following features:
 6. Follow the prompts to add items to the cart and finish by pressing `d` or `done` to see the total price
 
 
+## Rake Commands
+- `rake run` - Run the application
+- `rake test` - Run all tests
+- `rake help` - shows the available rake tasks
+
 ## Reasoning
 The code is designed to be simple and easy to understand. It uses a class-based approach to define the cart system and its features. The main class is `Basket`, which contains methods for adding items, applying discounts, and calculating the total price.
 

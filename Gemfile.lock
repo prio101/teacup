@@ -19,6 +19,7 @@ GEM
     psych (5.2.4)
       date
       stringio
+    rake (13.2.1)
     rdoc (6.13.1)
       psych (>= 4.0.0)
     reline (0.6.1)
@@ -46,6 +47,7 @@ DEPENDENCIES
   artii (~> 2.1)
   colorize (~> 1.1)
   debug (~> 1.10)
+  rake (~> 13.2)
   rspec (~> 3.13)
 
 BUNDLED WITH
