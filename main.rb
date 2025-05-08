@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 require 'colorize'
+require 'artii'
 require_relative './lib/products/product'
 require_relative './lib/products/product_catalogue'
 require_relative './lib/delivery_rules/delivery_rule'
@@ -8,6 +9,11 @@ require_relative './lib/offers/offer'
 require_relative './lib/offers/sticker_pack_offer'
 require_relative './lib/utils/logger_helper'
 require_relative './lib/utils/round_up'
+
+
+# Making ascii art for the title
+artii = Artii::Base.new(font: 'slant')
+puts artii.asciify('Basket Application').colorize(:blue).bold
 
 
 logger = LoggerHelper

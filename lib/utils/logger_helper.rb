@@ -5,9 +5,9 @@ module LoggerHelper
 
   def self.log(level, message)
     logger.formatter = proc do |severity, datetime, _progname, msg|
-      "#{datetime}:\n" \
+      "#{datetime.to_s.colorize(:black).on_white}:\n" \
       "---------------------\n" \
-      "#{severity} - #{msg}\n" \
+      "#{severity.colorize(:red).bold} - #{msg}\n" \
       "---------------------\n"
     end
     output(level, message)
@@ -24,7 +24,7 @@ module LoggerHelper
     when :debug
       logger.debug(message.colorize(:blue).on_yellow)
     when :info
-      logger.info(message.colorize(color: :blue).on_gray.bold)
+      logger.info(message.colorize(:blue).on_gray.bold)
     when :warn
       logger.warn(message.colorize(:green).on_gray)
     when :error

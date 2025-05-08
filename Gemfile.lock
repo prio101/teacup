@@ -1,6 +1,7 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    artii (2.1.2)
     colorize (1.1.0)
     date (3.4.1)
     debug (1.10.0)
@@ -28,6 +29,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
+  artii (~> 2.1)
   colorize (~> 1.1)
   debug (~> 1.10)
 
