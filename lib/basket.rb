@@ -1,5 +1,6 @@
 class Basket
 
+  attr_reader :items
 
   def initialize(catalogue:, delivery_rule:, offers: [])
     @catalogue = catalogue
@@ -16,11 +17,11 @@ class Basket
   end
 
   def total
-    unless @items.empty?
-      subtotal = apply_offers(@items.dup)
-      delivery = @delivery_rule.calculate(subtotal)
-      (subtotal + delivery).round(2)
-    end
+    return 0.00 if @items.empty?
+
+    subtotal = apply_offers(@items.dup)
+    delivery = @delivery_rule.calculate(subtotal)
+    RoundUp.call((subtotal + delivery), 2)
   end
 
   private

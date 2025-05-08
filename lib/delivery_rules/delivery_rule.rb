@@ -20,7 +20,7 @@ class DeliveryRule
       rule[:fee]
     else
       LoggerHelper.log(:warn, "No delivery rule found for subtotal: $#{formatted_subtotal}")
-      0
+      @thresholds.find { |t| t[:min] == 0 }[:fee]
     end
   end
 end
